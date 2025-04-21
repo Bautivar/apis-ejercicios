@@ -20,26 +20,24 @@
 // usuarios()
 
 // SEGUNDO EJERCICIO : API: https://jsonplaceholder.typicode.com/posts Pide al usuario un ID (1 al 100) mediante prompt. Obtén el post correspondiente y muestra su título y cuerpo. Si el ID no existe, muestra un mensaje de error
-// async function consultarPost() {
-//     try {
-//         const respuesta = await fetch("https://jsonplaceholder.typicode.com/posts");
-//         const datos = await respuesta.json();
-//         let consultarId = parseInt(prompt("Dime un id del 1 al 100"));
-//         for (const dato of datos) {
-//             if (consultarId === dato.id) {
-//                 console.log(`Titulo : ${dato.title}`);
-//                 console.log(`Titulo : ${dato.body}`);
-//             }else{
-//                 throw new Error("Id erroneo");
-                
-//             }
-//         }
-//     } catch (error) {
-//         console.error(error.message);
-//         return null;  
-//     }
-// }
-// consultarPost();
+async function consultarPost() {
+    try {
+        const respuesta = await fetch("https://jsonplaceholder.typicode.com/posts");
+        const datos = await respuesta.json();
+        let consultarId = parseInt(prompt("Dime un id del 1 al 100"));
+
+       
+        if (consultarId <= 100 && consultarId >= 1) {
+            console.log(`Titulo : ${datos[consultarId].title}`);
+            console.log(`Titulo : ${datos[consultarId].body}`);
+        }else{
+            throw new Error("Id erroneo");
+        }
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+consultarPost();
 
 // TERCER EJERCICIO : API: https://dummyjson.com/products Obtén todos los productos Filtra y muestra solo los productos con rating mayor a 4.5. Muestra nombre, precio y rating.
 // async function productosfiltrados() {
@@ -168,31 +166,31 @@
 // pokemon(numeroAleatorio);
 
 // EJERCICIO 9
-async function climaMadrid() {
-    try {
-        const api = await fetch("https://api.openweathermap.org/data/2.5/weather?q=madrid&APPID=d60c965d81195ee99b10d4e7d66c210b");
-        const datos = await api.json();
-        console.log(`Clima : ${datos.weather[0].main}`);
-        console.log(`Temperatura : ${datos.main.temp}`);
-    } catch (error) {
-        console.error("HUBO ERROR :",error)
-    }
-}
+// async function climaMadrid() {
+//     try {
+//         const api = await fetch("https://api.openweathermap.org/data/2.5/weather?q=madrid&APPID=d60c965d81195ee99b10d4e7d66c210b");
+//         const datos = await api.json();
+//         console.log(`Clima : ${datos.weather[0].main}`);
+//         console.log(`Temperatura : ${datos.main.temp}`);
+//     } catch (error) {
+//         console.error("HUBO ERROR :",error)
+//     }
+// }
 
-const boton = document.querySelector("button");
-const input = document.querySelector("input");
+// const boton = document.querySelector("button");
+// const input = document.querySelector("input");
 
-async function climaUsuario() {
-    try {
-        const api = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input.value}&APPID=d60c965d81195ee99b10d4e7d66c210b`);
-        const datos = await api.json();
-        console.log(`Clima : ${datos.weather[0].main}`);
-        console.log(`Temperatura : ${datos.main.temp}`);
-    } catch (error) {
-        console.error("HUBO ERROR :",error)
-    }
-}
-boton.addEventListener("click",climaUsuario);
+// async function climaUsuario() {
+//     try {
+//         const api = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input.value}&APPID=d60c965d81195ee99b10d4e7d66c210b`);
+//         const datos = await api.json();
+//         console.log(`Clima : ${datos.weather[0].main}`);
+//         console.log(`Temperatura : ${datos.main.temp}`);
+//     } catch (error) {
+//         console.error("HUBO ERROR :",error)
+//     }
+// }
+// boton.addEventListener("click",climaUsuario);
 // EEJERCICIO 10
 // const h1 = document.querySelector("h1")
 // const h2 = document.querySelector("h2")
