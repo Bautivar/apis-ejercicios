@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Titulo" id="titulo">
+    <input type="text" placeholder="Genero" id="genero">
+    <input type="number" placeholder="Numero de paginas" id="paginas">
+    <button id="insertar">Enviar</button>
+    <script>
+        let boton = document.querySelector("#insertar").value;
+        boton.addEventListener("click",() => {
+            let titulo = document.querySelector("#titulo").value;
+            let genero = document.querySelector("#genero").value;
+            let paginas = document.querySelector("#paginas").value;
+
+            let info = {
+                titulo : titulo,
+                genero : genero,
+                numero : paginas
+            };
+
+            fetch("../usuarios.php",{
+                method : "POST",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                body : JSON.stringify(info)
+            })
+            .then(respuesta => respuesta.json)
+            .then(datos => console.log(datos));
+        });
+    </script>
+    <!-- Lo  que estamos haciendo es la api interna. Estas apis internas nos sirven para poder comunicarnos con php, que es el unico que puede enviar datos a la base de datos.
+      Nos sirve para poder enviar datos a php PERO PARA PODER INVIAR DATOS NOS TENEMOS QUE COMUNICAR PRIMERO, Y ESO SE LOGRA HACIENDO UNA API INTERNA. Un ejemplo es cuando el usuario se registra. Los datos los guardamos en un objeto y tenemos que comunicarnos con el back-end para poder pasar los datos de este usuario. -->
+</body>
+</html>
