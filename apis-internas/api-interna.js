@@ -15,4 +15,3 @@
 
 // El delete solo se busca el id del objeto que queremos eliminar.
 
-// El local

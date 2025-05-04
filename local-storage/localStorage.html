@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- ejercicio 1
+    <input type="text" placeholder="Nombre" id="nombre">
+    <button id="guardar">Guardar nombre</button>
+    <button id="mostrar">Leer nombre</button>  -->
+
+    <!-- ejericicio 2 
+    <button id="sumar">Sumar contador</button>
+    <button id="resetear">Resetear contador</button>
+    <span id="contador">0</span> -->
+
+    <!-- ejercicio 3 
+     <input type="color" id="fondo"> -->
+
+    <!-- ejercicio 4 -->
+     <input type="text" id="nombre" placeholder="Nombre">
+     <input type="number" id="edad" placeholder="Edad">
+     <input type="email" id="correo" placeholder="Email">
+     <button id="guardar">Guardar datos</button>
+     <button id="mostrar">Mostrar datos</button>
+     <p id="mostrarDatos"></p>
+    <script>
+        // ejercicio 1
+        // let botonGuardar = document.querySelector("#guardar");
+        // let botonMostrar = document.querySelector("#mostrar");
+
+        // botonGuardar.addEventListener("click",() => {
+        //     let inputNombre = document.querySelector("#nombre").value;
+        //     localStorage.setItem("nombre",inputNombre);
+        // });
+        // botonMostrar.addEventListener("click",() =>{
+        //     let nombre = localStorage.getItem("nombre");
+        //     document.write(nombre);
+        // });
+
+        // ejercicio 2
+        // let botonSuma = document.querySelector("#sumar");
+        // let botonReseteo = document.querySelector("#resetear");
+        // let span = document.querySelector("span#contador");
+
+        // Aca cuando definimos la clave pero no el valor, al principio no nos muestra ningun dato hasta que se lo asignamos.
+        // let contador = localStorage.getItem("contador") || 0;
+        // span.textContent = contador;
+        // botonSuma.addEventListener("click", () => {
+        //     contador++;    
+        //     localStorage.setItem("contador",contador);
+        //     span.textContent = contador;
+        // });
+        // botonReseteo.addEventListener("click",() => {
+        //     contador = 0;
+        //     span.textContent = contador;
+        // });
+
+        // ejercicio 3
+        // const colorFondo = document.querySelector("input#fondo");
+        // colorFondo.addEventListener("change",(e) => {
+        //     localStorage.setItem("colorFondo",e.target.value);
+        //     document.querySelector("body").style.backgroundColor = localStorage.getItem("colorFondo");
+        // });
+
+        // ejercicio 4
+        const guardarDatos = document.querySelector("button#guardar");
+        const mostrarDatos = document.querySelector("button#mostrar");
+        let texto = document.querySelector("p#mostrarDatos");
+
+        
+        let datosUsuario = JSON.parse(localStorage.getItem("usuario"));
+
+        guardarDatos.addEventListener("click",() => {
+            const usuario = {
+                nombre : document.querySelector("input#nombre").value,
+                edad : document.querySelector("input#edad").value,
+                correo : document.querySelector("input#correo").value
+            };
+            localStorage.setItem("usuario",JSON.stringify(usuario));
+        });
+        
+        mostrarDatos.addEventListener("click",() => {
+            texto.textContent = `Nombre = ${datosUsuario.nombre}, Edad = ${datosUsuario.edad}, Correo = ${datosUsuario.correo}`;
+        });
+    </script>
+</body>
+</html>

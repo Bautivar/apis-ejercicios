@@ -62,6 +62,7 @@ const body = document.querySelector("body");
 //         console.error("HUBO ERROR : ",error);
 //     }
 // }
+// perroAleatorio()
 // botonPerro.addEventListener("click",perroAleatorio);
 
 // ejercicio 4
@@ -452,3 +453,296 @@ const body = document.querySelector("body");
 // botonPokemon.addEventListener("click",almacenarPokemon)
 
 // ejercicio 15
+// const buscador = document.querySelector("input#nombreUsuario");
+// const boton = document.querySelector("button#mostrar");
+// const cajaUsuarios = document.querySelector("div.contenedor");
+
+// async function filtrarUsuarios() {
+//     try {
+//         const api = await fetch("https://jsonplaceholder.typicode.com/users");
+//         const datos = await api.json();
+//         const usuarios = [];
+
+//         for (const usuario of datos) {
+//             usuarios.push(usuario);
+//         }
+
+//         let usuariosFiltrados = usuarios.filter((usuario) => usuario.name.toLowerCase() === buscador.value.toLowerCase());
+
+//         for (const usuarioFiltrado of usuariosFiltrados) {
+//             let texto = document.createElement("p");
+//             texto.textContent = usuarioFiltrado.name;
+//             cajaUsuarios.appendChild(texto);
+//         }
+
+//     } catch (error) {
+//         console.error("HUBO ERROR :",error);
+        
+//     }
+// }
+// boton.addEventListener("click",filtrarUsuarios);
+
+// ejercicio 16
+// const botonCompletado = document.querySelector("button#completadas");
+// const botonFaltantes = document.querySelector("button#faltantes");
+// const contenedorTareas = document.querySelector("div");
+
+// async function tareas() {
+//     try {
+//         const api = await fetch("https://jsonplaceholder.typicode.com/todos");
+//         const datos = await api.json();
+//         const tareas = [];
+//         for (const tarea of datos) {
+//             tareas.push(tarea);
+//         }
+//         return tareas;
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+
+// async function filtrarCompleto() {
+//     try {
+//         const arrayTareas = await tareas();
+//         let tareasCompletas = arrayTareas.filter(tarea => tarea.completed === true);
+//         contenedorTareas.innerHTML = "";
+//         for (const tarea of tareasCompletas) {
+//             let nombreTarea = document.createElement("p")
+//             nombreTarea.textContent = tarea.title;
+//             contenedorTareas.appendChild(nombreTarea);
+//         }
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+
+// async function filtrarIncompleto() {
+//     try {
+//         const arrayTareas = await tareas();
+//         let tareasCompletas = arrayTareas.filter(tarea => tarea.completed === false);
+//         contenedorTareas.innerHTML = "";
+//         for (const tarea of tareasCompletas) {
+//             let nombreTarea = document.createElement("p")
+//             nombreTarea.textContent = tarea.title;
+//             contenedorTareas.appendChild(nombreTarea);
+//         }
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+
+// botonCompletado.addEventListener("click",filtrarCompleto);
+// botonFaltantes.addEventListener("click",filtrarIncompleto);
+
+// ejercicio 17
+// const botonMostrar = document.querySelector("button#mostrar");
+// const botonEliminar = document.querySelector("button#eliminarPar");
+// const span = document.querySelector("span");
+// const caja = document.querySelector("div");
+
+// let arrayPerros = [];
+// let contador;
+// async function api() {
+//     try {
+//         const api = await fetch("https://dog.ceo/api/breeds/image/random");
+//         const datos = await api.json();
+//         arrayPerros.push(datos.message);
+//     } catch (error) {
+//         console.error(error);;
+//     }
+// }
+
+// function mostrarPerros() {
+//     caja.innerHTML = "";
+//     contador = 0;
+//     api();
+//     arrayPerros.forEach(enlace => {
+//         contadorImagenes();
+//         let imagen = document.createElement("img");
+//         imagen.src = enlace;
+//         caja.appendChild(imagen);
+//     });
+// }
+
+// function contadorImagenes() {
+//     contador++;
+//     span.textContent = contador;
+// }
+
+// function eliminarPar() {
+//     arrayPerros = arrayPerros.filter((perro,i) => i % 2 != 0);
+//     mostrarPerros()
+// }
+// botonMostrar.addEventListener("click",mostrarPerros);
+// botonEliminar.addEventListener("click",eliminarPar);
+
+// ejercicio 18
+// const input = document.querySelector("input#buscador");
+// const boton = document.querySelector("#buscar");
+// const seleccionTipos = document.querySelector("#selector");
+// const contenedorPokemones = document.querySelector("#contenedor");
+
+// let arrayPokemones = [];
+// async function guardarPokemon() {
+//     try {
+//         let nombre = input.value.toLowerCase();
+//         const api = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombre}`);
+//         const datos = await api.json();
+//         let pokemon = {
+//             nombre : datos.name,
+//             tipo : datos.types[0].type.name,
+//             imagen : datos.sprites.front_default
+//         };
+//         if (!arrayPokemones.find(p => p.nombre === datos.name)) {
+//             arrayPokemones.push(pokemon);
+//             mostrarPokemon();
+//         } else {
+//             alert("Ese Pokémon ya está en la lista.");
+//         }
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+// function mostrarPokemon() {
+//     contenedorPokemones.innerHTML = "";
+//     arrayPokemones.forEach((pokemon) => {
+//         let contenedor = document.createElement("div");
+//         contenedor.innerHTML = `<h2>${pokemon.nombre}</h2> <h3>Tipo : ${pokemon.tipo}</h3> <img src="${pokemon.imagen}">`;
+//         contenedorPokemones.appendChild(contenedor);
+//         borrarPokemon(pokemon,contenedor);
+//     })
+// }
+// function borrarPokemon(pokemon,contenedor) {
+//     contenedor.addEventListener("click", () => {
+//         const indice = arrayPokemones.findIndex(p => p.nombre === pokemon.nombre);
+//         if (indice !== -1) {
+//             arrayPokemones.splice(indice, 1);
+//             contenedorPokemones.removeChild(contenedor);
+//         }
+//     });
+// }
+// function filtro(pokemon) {
+//     if (!pokemon.tipo) {
+//         seleccionTipos.innerHTML = "<option value='todos'>Todos</option>";
+//         let tiposPokemon = arrayPokemones.filter((pokemon) => pokemon.tipo);
+//         for (const tipo of tiposPokemon) {
+//             let opcion = document.createElement("option");
+//             opcion.value = tipo;
+//             opcion.textContent = tipo;
+//             seleccionTipos.appendChild(opcion);
+//         }
+//     }
+// }
+// boton.addEventListener("click",guardarPokemon);
+// ME FALTA TERMINAR
+
+// ejercicio 19
+// const listaUsarios = document.querySelector("#ranking");
+
+// async function apiUsuarios() {
+//     try {
+//         const api = await fetch("https://jsonplaceholder.typicode.com/users");
+//         const datos  = await api.json();
+//         let arrayUsuarios = [];
+        
+//         for (const dato of datos) {
+//             let usuario = {
+//                 idUsuario : dato.id,
+//                 nombre : dato.name
+//             }
+//             arrayUsuarios.push(usuario);
+//         }
+//         return arrayUsuarios
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+// async function apiTareas() {
+//     try {
+//         const api = await fetch("https://jsonplaceholder.typicode.com/todos");
+//         const datos  = await api.json();
+//         let arrayTareas = [];
+        
+//         for (const dato of datos) {
+//             let tarea = {
+//                 idUsuario : dato.userId,
+//                 tarea : dato.completed
+//             }
+//             arrayTareas.push(tarea);
+//         }
+//         return arrayTareas
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+// async function lista() {
+//     try {
+//         const arrayTareas = await apiTareas();
+//         const arrayUsuarios = await apiUsuarios();
+
+//         const ranking = arrayUsuarios.map((usuario) => {
+//             let usuarioTareasCompletadas = arrayTareas.filter((tarea) => tarea.tarea === true && usuario.idUsuario === tarea.idUsuario);
+//             return {
+//                 nombre : usuario.nombre,
+//                 tareasCompletadas : usuarioTareasCompletadas.length
+//             }
+//         });
+//         ranking.sort((a,b) => b.tareasCompletadas - a.tareasCompletadas);
+
+//         mostrarRanking(ranking);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+// function mostrarRanking(ranking) {
+//     listaUsarios.innerHTML = "";
+
+//     ranking.forEach(usuario => {
+//         const item = document.createElement("li");
+//         item.textContent = `${usuario.nombre} - ${usuario.tareasCompletadas} tareas completadas`;
+//         listaUsarios.appendChild(item);
+//     });
+// }
+// lista()
+
+// ejercicio 20
+// EN REACONDICIONAMIENTO
+
+// ejercicio 21
+const botonFrases = document.querySelector("button.frases");
+const cajaFrases = document.querySelector("div.contenedor");
+async function apiFrases() {
+    const api = await fetch("https://type.fit/api/quotes");
+    const datos = await api.json();
+
+    for (const dato of datos) {
+        console.log(dato.text);
+    }
+}
+botonFrases.addEventListener("click",apiFrases)
+// NO CARGA LA API
+
+// ejercicio 22 NO FUNCIONAAAAAAAAA
+
+// ejercicio 25
+const select = document.querySelector("#regiones");
+const contenedorPaises = document.querySelector(".contenedor");
+
+async function paises() {
+    try {
+        const api = await fetch("https://restcountries.com/v3.1/all");
+        const paises = await api.json();
+        contenedorPaises.innerHTML = "";
+        for (const pais of paises) {
+            let contenedor = document.createElement("div");
+            contenedor.innerHTML = `<h2>${pais.name.common}</h2> <img src="${pais.flags.png}">`;
+            contenedorPaises.appendChild(contenedor);        
+        }
+    } catch (error) {
+        console.error(error);
+
+    }
+}
+async function desplegable(objetoPaises) {
+    let regiones = objetoPaises.filter((pais) => pais.region);
+}
