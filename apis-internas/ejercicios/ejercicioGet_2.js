@@ -576,7 +576,8 @@ const body = document.querySelector("body");
 // botonMostrar.addEventListener("click",mostrarPerros);
 // botonEliminar.addEventListener("click",eliminarPar);
 
-// ejercicio 18
+// ejercicio 18 BAUTI BOBI, VOS TENES QUE GUARDAR TODOS LOS POKEMONES EN UN ARRAY Y DESPUES EL USUARIO AL INTRODUCIR UN POKEMON, SE BUSQUE EN EL ARRAY EL POKEMON Y TE MUESTRE LOS DATOS. EL SELECT TIENE QUE TENER DE ENTRADA TODOS LOS TIPOS DE POKEMON Y AL HACER CLICK SE FILTRE EN PANTALLA.
+
 // const input = document.querySelector("input#buscador");
 // const boton = document.querySelector("#buscar");
 // const seleccionTipos = document.querySelector("#selector");
